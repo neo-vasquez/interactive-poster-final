@@ -1,0 +1,385 @@
+
+
+:root {
+  --ink: #0c0a0d;
+  --paper: #f2ece1;
+
+  --pink: #ff4fa3;
+  --orange: #ff8a1f;
+  --teal: #1fd1c4;
+  --yellow: #ffd23f;
+  --violet: #a678ff;
+
+  --gothic: "Pirata One", "UnifrakturCook", serif;
+  --typewriter: "Special Elite", "Courier New", monospace;
+
+  /* How deep the zigzag cut is. It grows a little with the screen. */
+  --cut: clamp(10px, 1.4vw, 16px);
+
+  
+  --zig: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    97.5% 100%,
+    95% calc(100% - var(--cut)),
+    92.5% 100%,
+    90% calc(100% - var(--cut)),
+    87.5% 100%,
+    85% calc(100% - var(--cut)),
+    82.5% 100%,
+    80% calc(100% - var(--cut)),
+    77.5% 100%,
+    75% calc(100% - var(--cut)),
+    72.5% 100%,
+    70% calc(100% - var(--cut)),
+    67.5% 100%,
+    65% calc(100% - var(--cut)),
+    62.5% 100%,
+    60% calc(100% - var(--cut)),
+    57.5% 100%,
+    55% calc(100% - var(--cut)),
+    52.5% 100%,
+    50% calc(100% - var(--cut)),
+    47.5% 100%,
+    45% calc(100% - var(--cut)),
+    42.5% 100%,
+    40% calc(100% - var(--cut)),
+    37.5% 100%,
+    35% calc(100% - var(--cut)),
+    32.5% 100%,
+    30% calc(100% - var(--cut)),
+    27.5% 100%,
+    25% calc(100% - var(--cut)),
+    22.5% 100%,
+    20% calc(100% - var(--cut)),
+    17.5% 100%,
+    15% calc(100% - var(--cut)),
+    12.5% 100%,
+    10% calc(100% - var(--cut)),
+    7.5% 100%,
+    5% calc(100% - var(--cut)),
+    2.5% 100%,
+    0 calc(100% - var(--cut)));
+  --zig-narrow: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    95% 100%,
+    90% calc(100% - var(--cut)),
+    85% 100%,
+    80% calc(100% - var(--cut)),
+    75% 100%,
+    70% calc(100% - var(--cut)),
+    65% 100%,
+    60% calc(100% - var(--cut)),
+    55% 100%,
+    50% calc(100% - var(--cut)),
+    45% 100%,
+    40% calc(100% - var(--cut)),
+    35% 100%,
+    30% calc(100% - var(--cut)),
+    25% 100%,
+    20% calc(100% - var(--cut)),
+    15% 100%,
+    10% calc(100% - var(--cut)),
+    5% 100%,
+    0 calc(100% - var(--cut)));
+
+  /* Used only for the artist name tear on hover. Both shapes have
+     22 points so the browser can animate from flat to jagged. */
+  --flat: polygon(
+    0% 0%, 10% 0%, 20% 0%, 30% 0%, 40% 0%, 50% 0%, 60% 0%, 70% 0%, 80% 0%, 90% 0%, 100% 0%,
+    100% 100%, 90% 100%, 80% 100%, 70% 100%, 60% 100%, 50% 100%, 40% 100%, 30% 100%, 20% 100%, 10% 100%, 0% 100%);
+  --jag: polygon(
+    0% 0%, 10% 25%, 20% 0%, 30% 25%, 40% 0%, 50% 25%, 60% 0%, 70% 25%, 80% 0%, 90% 25%, 100% 0%,
+    100% 100%, 90% 75%, 80% 100%, 70% 75%, 60% 100%, 50% 75%, 40% 100%, 30% 75%, 20% 100%, 10% 75%, 0% 100%);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--typewriter);
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.5;
+}
+
+.poster {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 5vw, 4rem) 4rem;
+  overflow-x: clip;
+}
+
+.tour-info {
+  margin: 1.5rem 0 0;
+  max-width: 40rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+}
+
+.tour-info span {
+  display: block;
+}
+
+.tour-info .opener {
+  font-family: var(--gothic);
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.tickets,
+.social {
+  display: inline-block;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.tickets { box-shadow: 6px 6px 0 var(--pink); }
+.social { box-shadow: 6px 6px 0 var(--teal); }
+
+.tickets:focus-visible,
+.social:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+
+
+.artist {
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: clamp(3.5rem, 22vw, 14rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-shadow: 0.04em 0.04em 0 var(--pink);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+  clip-path: var(--flat);
+  overflow-wrap: anywhere;
+}
+
+.tour-title {
+  display: inline-block;
+  margin: 1.5rem 0 0;
+  padding: 0.25rem 0.9rem;
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--gothic);
+  font-size: clamp(1.5rem, 5vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  transform: rotate(1.5deg);
+}
+
+.city {
+  font-family: var(--gothic);
+  font-size: clamp(2rem, 7vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+}
+
+
+.date,
+.city {
+  display: inline-grid;
+  justify-self: start;
+}
+
+.date > span,
+.city > span {
+  grid-area: 1 / 1;
+}
+
+.es {
+  visibility: hidden;
+}
+
+
+.tour-list {
+  margin-top: 3rem;
+  border-top: 2px solid var(--paper);
+}
+
+.stop {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding: 2rem 1.25rem calc(var(--cut) + 2rem);
+  background: var(--flag, var(--pink));
+  color: var(--ink);
+  clip-path: var(--zig);
+}
+
+.stop:nth-child(5n + 1) { --flag: var(--pink); }
+.stop:nth-child(5n + 2) { --flag: var(--orange); }
+.stop:nth-child(5n + 3) { --flag: var(--teal); }
+.stop:nth-child(5n + 4) { --flag: var(--yellow); }
+.stop:nth-child(5n + 5) { --flag: var(--violet); }
+
+.stop::before,
+.stop::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: radial-gradient(circle at 50% 50%, var(--ink) 0 4px, transparent 4.5px) 0 0 / 22px 12px repeat-x;
+  pointer-events: none;
+}
+
+.stop::before { top: 0.6rem; }
+.stop::after { bottom: calc(var(--cut) + 0.6rem); }
+
+.stop summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.stop summary::-webkit-details-marker {
+  display: none;
+}
+
+.stop summary::after {
+  content: "+";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--typewriter);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.stop[open] summary::after {
+  content: "\00d7";
+}
+
+.stop summary:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 6px;
+}
+
+.date {
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+}
+
+.venue {
+  margin: 0.75rem 0 0 11.5rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+
+.stop[open] .en {
+  visibility: hidden;
+}
+
+.stop[open] .es {
+  visibility: visible;
+}
+
+
+@media (max-width: 44rem) {
+  .stop {
+    clip-path: var(--zig-narrow);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .stop summary {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .venue {
+    margin-left: 0;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .tickets,
+  .social {
+    width: 100%;
+  }
+}
+
+
+.artist {
+  transition:
+    clip-path 1.4s ease-out,
+    transform 1.4s ease-out;
+}
+
+@media (hover: hover) {
+  .artist:hover {
+    clip-path: var(--jag);
+    transform: rotate(-2deg) skewX(-10deg);
+    transition: none;
+  }
+
+  .tickets:hover,
+  .social:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+}
+
+
+
+.date {
+  animation: beat 1s ease-in-out infinite;
+  animation-delay: calc(var(--row, 0) * 0.5s);
+}
+
+@keyframes beat {
+  50% { opacity: 0.5; }
+}
+
+.stop:nth-child(2) { --row: 1; }
+.stop:nth-child(3) { --row: 2; }
+.stop:nth-child(4) { --row: 3; }
+.stop:nth-child(5) { --row: 4; }
+.stop:nth-child(6) { --row: 5; }
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01s !important;
+    animation: none !important;
+  }
+}
